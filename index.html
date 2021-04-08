@@ -11,7 +11,7 @@
     </div>
     <script>
       var converter = new showdown.Converter(),
-      text      = '# hello, markdown!\n this is love <input type="text" value="ohoh"></input>; and more',
+      text      = '# hello, markdown!\n this is love <input id="abc_def_hij" roles="abc;def" type="text" style="color:red;bgcolor:blue" value="ohoh"></input>; and more',
       html      = converter.makeHtml(text);
       console.log(html);
       document.getElementById('content').innerHTML = html;
