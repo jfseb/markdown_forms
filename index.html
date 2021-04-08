@@ -2,13 +2,77 @@
   <head>
     <meta charset="utf-8" />
     <title> markdown_forms </title>
-    <script src="https://unpkg.com/showdown@1.9.1/dist/showdown.min.js" ></script>
+    <script src="./js/showdown.min.js"></script>
+    <script src="https://unpkg.com/showdown@1.9.1/dist/showdown.min.js3" ></script>
   </head>
   <body>
-    HI there.
+     welcome. 
     <div id="content">
 
     </div>
+    <script>
+      xhr.open("GET", "/bar/foo.txt", true);
+xhr.onload = function (e) {
+  if (xhr.readyState === 4) {
+    if (xhr.status === 200) {
+      console.log(xhr.responseText);
+    } else {
+      console.error(xhr.statusText);
+    }
+  }
+};
+xhr.onerror = function (e) {
+  console.error(xhr.statusText);
+};
+xhr.send(null); 
+      
+      
+       function loadMD(url) {
+      return new Promise(function(resolve, reject) {
+    // Get file name from url.
+    var xhr = new XMLHttpRequest();
+    xhr.responseType = 'blob';
+    xhr.onload = function() {
+      if ( xhr.readyState === 4) {
+        if ( xhr.status === 200 ) {
+           resolve(xhr.responseText);
+        }
+      }
+    };
+    xhr.onerror = reject;
+    xhr.open('GET', url);
+    xhr.send();
+  });
+    
+      
+      function renderMD( url ) {
+        loadMD(url).then( text => {
+          transformAndPutMD(text);
+        });
+      }
+   
+   
+        function adjustLinks(html) {
+          var re = /(href="./([^"]+).md"/;
+          var match = undefined;
+          while( match = re.exec(html) ) {
+            var ref = match[1];  
+            var pre = html.substr(0,match.index);
+            var post = html.substr(match.index + match[0].length);
+            html = pre + 'href="index.html?md=" + ref + '"' + post;
+          }
+          return html;
+        }
+     
+        function transformAndPut(text) {
+         var converter = new showdown.Converter(),
+ddddddddd      = '# hello, markdown!\n this is love <input id="abc_def_hij" roles="abc;def" type="text" style="color:red;bgcolor:blue" value="ohoh"></input>; and more',
+      html      = converter.makeHtml(text);
+      console.log(html);
+      document.getElementById('content').innerHTML = html;
+      
+      
+    </script>
     <script>
       var converter = new showdown.Converter(),
       text      = '# hello, markdown!\n this is love <input id="abc_def_hij" roles="abc;def" type="text" style="color:red;bgcolor:blue" value="ohoh"></input>; and more',
@@ -16,5 +80,7 @@
       console.log(html);
       document.getElementById('content').innerHTML = html;
     </script>
+    
+    
  </body>
 </html>
