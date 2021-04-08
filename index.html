@@ -11,7 +11,7 @@
     </div>
     <script>
       var converter = new showdown.Converter(),
-      text      = '# hello, markdown!\n this is love <input type="text" value="ohoh"></input> and more',
+      text      = '# hello, markdown!\n this is love &lt;input type="text" value="ohoh"&gt;&lt;/input&gt; and more',
       html      = converter.makeHtml(text);
       document.getElementById('content').innerHTML = html;      
     </script>
