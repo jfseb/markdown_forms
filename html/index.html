@@ -1,0 +1,17 @@
+<html>
+  <title> markdown_forms </title>
+    <script src="https://unpkg.com/showdown@1.9.1/dist/showdown.min.js"/>
+  <body>
+    
+    <div id="content">
+      
+    </div>
+    
+    <script>
+      var converter = new showdown.Converter(),
+      text      = '# hello, markdown!\n this is love <input type="text" value="ohoh"></input> and more',
+      html      = converter.makeHtml(text);
+      document.getElementById('content').innerHTML = html;      
+    </script>
+ </body>
+</html>
